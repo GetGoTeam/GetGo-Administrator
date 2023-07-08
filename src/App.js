@@ -22,7 +22,7 @@ function App() {
                 key={index}
                 path={route.path}
                 element={
-                  <Layout>
+                  <Layout active_index={index}>
                     <Page />
                   </Layout>
                 }

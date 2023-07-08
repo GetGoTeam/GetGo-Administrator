@@ -1,8 +1,13 @@
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff5e4;
+}
+
 .container {
-    width: 100%;
-    display: flex;
-    min-height: 100vh;
-    .content {
-        width: 100%;
-    }
+  display: flex;
+}
+
+.content {
+  margin-left: 30px;
 }

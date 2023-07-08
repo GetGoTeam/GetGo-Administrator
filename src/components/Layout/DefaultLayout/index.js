@@ -2,13 +2,13 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import classes from "./DefaultLayout.module.scss";
 
-function DefaultLayout({ children }) {
+function DefaultLayout({ children, active_index }) {
   return (
-    <div>
+    <div className={classes["layout"]}>
       <Header />
-      <Sidebar />
-      <div className={classes.container}>
-        <div className={classes.content}>{children}</div>
+      <div className={classes["container"]}>
+        <Sidebar active_index={active_index} />
+        <div className={classes["content"]}>{children}</div>
       </div>
     </div>
   );
