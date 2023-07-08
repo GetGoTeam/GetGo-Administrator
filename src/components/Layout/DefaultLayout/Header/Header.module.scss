@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #ffe3e1;
+  width: 100%;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  border-right: solid 2px white;
+  color: rgba($color: #000, $alpha: 0.8);
+  padding: 0 10px;
+  height: 100%;
+  line-height: 60px;
+}
+
+.logout {
+  margin-right: 20px;
+}
