@@ -1,0 +1,27 @@
+.createAccountBtn {
+  display: flex;
+  background-color: #ff9494;
+  width: 200px;
+  height: 50px;
+  border-radius: 80px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.createAccountBtn:hover {
+  filter: brightness(85%);
+}
+
+.createAccountBtn__icon {
+  font-size: 17px;
+  color: white;
+  margin-right: 10px;
+}
+
+.createAccountBtn__text {
+  font-size: 17px;
+  color: white;
+  font-weight: 600;
+}

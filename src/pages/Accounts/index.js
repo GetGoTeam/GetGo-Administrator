@@ -1,5 +1,6 @@
 import classes from "./accounts.module.scss";
 import Filter from "../../components/Layout/DefaultLayout/Filter/index";
+import { CreateAccountBtn } from "../../components/Layout/DefaultLayout/Button";
 
 const filters = [
   {
@@ -11,13 +12,13 @@ const filters = [
   {
     title: "Tài xế",
     color: "#00E878",
-    icon: <i className="fa-regular fa-user"></i>,
+    icon: <i className="fa-solid fa-car"></i>,
     quantity: 100,
   },
   {
     title: "Tổng đài",
     color: "#E8A700",
-    icon: <i className="fa-regular fa-user"></i>,
+    icon: <i className="fa-solid fa-headset"></i>,
     quantity: 100,
   },
 ];
@@ -30,6 +31,9 @@ function Accounts() {
         {filters.map((item, index) => (
           <Filter key={index} title={item.title} icon={item.icon} color={item.color} quantity={item.quantity}></Filter>
         ))}
+      </div>
+      <div className={classes["createAccountBtn-container"]}>
+        <CreateAccountBtn />
       </div>
     </>
   );

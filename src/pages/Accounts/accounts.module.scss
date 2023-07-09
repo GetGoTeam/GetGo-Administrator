@@ -1,4 +1,11 @@
 .filter-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.createAccountBtn-container {
+  display: flex;
+  justify-content: right;
+  margin-top: 30px;
 }

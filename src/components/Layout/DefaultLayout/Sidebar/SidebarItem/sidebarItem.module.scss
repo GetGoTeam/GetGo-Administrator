@@ -5,13 +5,16 @@
   display: flex;
   color: rgba($color: black, $alpha: 0.8);
   line-height: 60px;
-  border-bottom: solid 2px white;
   text-decoration: none;
   transition: filter 0.2s;
 }
 
 .item:hover {
   filter: brightness(85%);
+}
+
+.item__border {
+  border-bottom: solid 2px white;
 }
 
 .item--active {
