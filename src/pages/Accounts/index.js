@@ -1,6 +1,8 @@
 import classes from "./accounts.module.scss";
 import Filter from "../../components/Layout/DefaultLayout/Filter/index";
 import { CreateAccountBtn } from "../../components/Layout/DefaultLayout/Button";
+import Pagination from "../../components/Layout/DefaultLayout/Pagination/Pagination";
+import React, { useState } from "react";
 
 const filters = [
   {
@@ -24,6 +26,9 @@ const filters = [
 ];
 
 function Accounts() {
+  let PageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <>
       <h1>Tài khoản</h1>
@@ -34,6 +39,16 @@ function Accounts() {
       </div>
       <div className={classes["createAccountBtn-container"]}>
         <CreateAccountBtn />
+      </div>
+
+      <div className={classes["pagination-bar-container"]}>
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={100}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
     </>
   );
