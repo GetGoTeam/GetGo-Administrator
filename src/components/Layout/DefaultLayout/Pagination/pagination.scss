@@ -18,6 +18,8 @@
     min-width: 32px;
     font-weight: 500;
     transition: background-color 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
 
     &.dots:hover {
       background-color: transparent;

@@ -7,6 +7,8 @@
   line-height: 60px;
   text-decoration: none;
   transition: filter 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .item:hover {
