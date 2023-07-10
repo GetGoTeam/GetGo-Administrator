@@ -1,0 +1,29 @@
+.item-container {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  width: 300px;
+  height: 100px;
+}
+
+.icon {
+  font-size: 35px;
+  color: #fff5e4;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.data {
+  font-size: 30px;
+  font-weight: bold;
+}
