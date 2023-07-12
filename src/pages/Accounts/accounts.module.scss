@@ -163,7 +163,7 @@
 
 }
 
-.btn-customize{ 
+.btn-customize { 
   padding: 0.4rem 0.5rem 0.3rem 0.5rem;
   background-color: $primary_900;
   border-radius: 0.5rem;
@@ -176,4 +176,9 @@
     width: 1.5rem;
     height: auto;
   }
+}
+
+.btn-customize:hover{
+  cursor: pointer;
+  filter: brightness(85%);
 }
