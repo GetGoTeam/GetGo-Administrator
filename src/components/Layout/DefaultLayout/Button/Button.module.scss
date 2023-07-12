@@ -1,8 +1,8 @@
-@import '../../../../utils/base.scss';
+@import "/src/utils/base.scss";
 
 .createAccountBtn {
   display: flex;
-  background-color: #ff9494;
+  background-color: $primary_900;
   width: 200px;
   height: 50px;
   border-radius: 80px;
@@ -30,7 +30,6 @@
   font-weight: 600;
 }
 
-
 .customize-btn {
   display: flex;
   justify-content: center;
@@ -44,11 +43,11 @@
   &:last-child {
     margin-right: 0;
   }
-  
+
   &-icon {
     width: fit-content;
     margin-right: 0.5rem;
-    
+
     img {
       height: 1.5rem;
       width: auto;

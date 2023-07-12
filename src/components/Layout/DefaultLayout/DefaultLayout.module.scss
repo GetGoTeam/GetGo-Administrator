@@ -1,7 +1,10 @@
+@import "/src/utils/base.scss";
+
 .layout {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff5e4;
+  min-width: 1200px;
+  background-color: $primary_50;
 }
 
 .container {

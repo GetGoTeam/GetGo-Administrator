@@ -12,7 +12,7 @@ function StatisticsTable(props) {
   const { yesterdayRevenue, todayRevenue, canceledTrips, completedTrips } = props;
 
   const canceledRate = ((canceledTrips * 100) / (completedTrips + canceledTrips)).toFixed(2);
-  const revenueRate = (((todayRevenue - yesterdayRevenue) * 100) / yesterdayRevenue).toFixed(2);
+  const revenueRate = (((todayRevenue - yesterdayRevenue) / Math.min(todayRevenue, yesterdayRevenue)) * 100).toFixed(2);
 
   return (
     <div className={classes["statistics-table"]}>

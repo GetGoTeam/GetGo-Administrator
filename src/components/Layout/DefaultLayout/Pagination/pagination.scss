@@ -1,3 +1,5 @@
+@import "/src/utils/base.scss";
+
 .pagination-container {
   display: flex;
   list-style-type: none;
@@ -26,12 +28,12 @@
       cursor: default;
     }
     &:hover {
-      background-color: #ffe3e1;
+      background-color: $primary_200;
       cursor: pointer;
     }
 
     &.selected {
-      background-color: #ff9494;
+      background-color: $primary_900;
       color: white;
     }
 

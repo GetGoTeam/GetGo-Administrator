@@ -1,5 +1,7 @@
+@import "/src/utils/base.scss";
+
 .item {
-  background-color: #ffe3e1;
+  background-color: $primary_200;
   width: 220px;
   height: 60px;
   display: flex;
@@ -20,7 +22,7 @@
 }
 
 .item--active {
-  background-color: #ff9494;
+  background-color: $primary_900;
   color: rgba($color: white, $alpha: 0.8);
 }
 

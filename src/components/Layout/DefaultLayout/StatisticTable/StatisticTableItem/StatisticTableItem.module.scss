@@ -1,3 +1,5 @@
+@import "/src/utils/base.scss";
+
 .item-container {
   display: flex;
   align-items: center;
@@ -8,7 +10,7 @@
 
 .icon {
   font-size: 35px;
-  color: #fff5e4;
+  color: $primary_50;
   border-radius: 100%;
   width: 70px;
   height: 70px;

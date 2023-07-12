@@ -1,8 +1,8 @@
-@import '../../utils/base.scss';
+@import "/src/utils/base.scss";
 
 .filter-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -26,7 +26,7 @@
     display: flex;
     &-filter {
       input {
-        background: url('../../assets/icon/ic_filter.svg') no-repeat left center;
+        background: url("../../assets/icon/ic_filter.svg") no-repeat left center;
         background-color: white;
         font-size: 1rem;
         padding: 0.5rem 1rem 0.5rem 2rem;
@@ -66,7 +66,7 @@
   width: 100%;
   margin-top: 0.5rem;
 
-  &-title{
+  &-title {
     height: 2.5rem;
     display: flex;
     text-align: center;
@@ -113,17 +113,17 @@
         font-weight: 400;
 
         &-status {
-          color: #0068E1;
+          color: #0068e1;
 
           &-active {
-            color: #FF2020;
+            color: #ff2020;
           }
         }
       }
     }
   }
 
-  &-checkbox{
+  &-checkbox {
     width: 3%;
 
     input:hover {
@@ -134,7 +134,7 @@
   &-no {
     width: 5%;
   }
-  
+
   &-name {
     width: 20%;
   }
@@ -160,10 +160,9 @@
     display: flex;
     justify-content: center;
   }
-
 }
 
-.btn-customize { 
+.btn-customize {
   padding: 0.4rem 0.5rem 0.3rem 0.5rem;
   background-color: $primary_900;
   border-radius: 0.5rem;
@@ -178,7 +177,7 @@
   }
 }
 
-.btn-customize:hover{
+.btn-customize:hover {
   cursor: pointer;
   filter: brightness(85%);
 }

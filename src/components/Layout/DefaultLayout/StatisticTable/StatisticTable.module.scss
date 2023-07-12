@@ -1,5 +1,7 @@
+@import "/src/utils/base.scss";
+
 .statistics-table {
-  background-color: #ffe3e1;
+  background-color: $primary_200;
   border-radius: 20px;
   width: 100%;
 }

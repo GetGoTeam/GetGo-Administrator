@@ -1,9 +1,11 @@
+@import "/src/utils/base.scss";
+
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  background-color: #ffe3e1;
+  background-color: $primary_200;
   width: 100%;
 }
 
@@ -36,7 +38,7 @@
 
 .logout {
   margin-right: 20px;
-  color: #ff9494;
+  color: $primary_900;
   cursor: pointer;
   transition: filter 0.2s;
 }
