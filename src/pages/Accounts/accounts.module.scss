@@ -1,3 +1,5 @@
+@import '../../utils/base.scss';
+
 .filter-container {
   display: flex;
   justify-content: space-between;
@@ -13,4 +15,165 @@
 .pagination-bar-container {
   display: flex;
   justify-content: center;
+}
+
+.customize-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+
+  &-left {
+    display: flex;
+    &-filter {
+      input {
+        background: url('../../assets/icon/ic_filter.svg') no-repeat left center;
+        background-color: white;
+        font-size: 1rem;
+        padding: 0.5rem 1rem 0.5rem 2rem;
+        width: 18rem;
+        border: 0.1rem solid #bebebe;
+        border-radius: 0.2rem;
+      }
+    }
+
+    &-select {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+
+      p {
+        margin: 0;
+        margin-left: 0.3rem;
+        font-size: 1rem;
+      }
+
+      input:hover {
+        cursor: pointer;
+      }
+
+      p:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  &-right {
+    display: flex;
+  }
+}
+
+.table-container {
+  width: 100%;
+  margin-top: 0.5rem;
+
+  &-title{
+    height: 2.5rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: $primary_500;
+    border-radius: 0.3rem 0.3rem 0 0;
+
+    .title {
+      font-size: 1rem;
+      font-weight: 600;
+      // border: 1px solid #000;
+    }
+  }
+
+  &-content {
+    height: 15rem;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 8px;
+      background-color: #e7e7e7;
+      border: 1px solid #cacaca;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #818181;
+    }
+
+    &-item {
+      height: 2.8rem;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      background-color: white;
+      margin-top: 0.1rem;
+
+      .item {
+        font-size: 1rem;
+        font-weight: 400;
+
+        &-status {
+          color: #0068E1;
+
+          &-active {
+            color: #FF2020;
+          }
+        }
+      }
+    }
+  }
+
+  &-checkbox{
+    width: 3%;
+
+    input:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-no {
+    width: 5%;
+  }
+  
+  &-name {
+    width: 20%;
+  }
+
+  &-dob {
+    width: 14%;
+  }
+
+  &-phone {
+    width: 16%;
+  }
+
+  &-account {
+    width: 15%;
+  }
+
+  &-status {
+    width: 14%;
+  }
+
+  &-tools {
+    width: 13%;
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+.btn-customize{ 
+  padding: 0.4rem 0.5rem 0.3rem 0.5rem;
+  background-color: $primary_900;
+  border-radius: 0.5rem;
+
+  &:first-child {
+    margin-right: 0.5rem;
+  }
+
+  img {
+    width: 1.5rem;
+    height: auto;
+  }
 }

@@ -1,3 +1,5 @@
+@import '../../../../utils/base.scss';
+
 .createAccountBtn {
   display: flex;
   background-color: #ff9494;
@@ -26,4 +28,42 @@
   font-size: 17px;
   color: white;
   font-weight: 600;
+}
+
+
+.customize-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  width: 7rem;
+  background-color: $primary_900;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+  
+  &-icon {
+    width: fit-content;
+    margin-right: 0.5rem;
+    
+    img {
+      height: 1.5rem;
+      width: auto;
+    }
+  }
+
+  &-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+  }
+}
+
+.customize-btn:hover {
+  filter: brightness(85%);
+  cursor: pointer;
 }

@@ -11,4 +11,16 @@ function CreateAccountBtn() {
   );
 }
 
-export { CreateAccountBtn };
+function CustomizeBtn(props) {
+  const { iconBtn, titleBtn } = props;
+  return (
+    <div className={classes["customize-btn"]}>
+      <div className={classes["customize-btn-icon"]}>
+        <img src={iconBtn} alt="none" />
+      </div>
+      <div className={classes["customize-btn-title"]}>{titleBtn}</div>
+    </div>
+  );
+}
+
+export { CreateAccountBtn, CustomizeBtn };
