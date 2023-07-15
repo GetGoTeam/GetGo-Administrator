@@ -1,12 +1,17 @@
 import classes from "./BackDrop.module.scss";
+import FadeInOut from "./FadeInOut";
 
 function BackDrop(props) {
   return (
-    <div
-      className={`${classes["backdrop"]} ${props.status ? classes["backdrop--enable"] : classes["backdrop--disable"]}`}
-    >
-      {props.component}
-    </div>
+    <FadeInOut show={props.status} duration={300}>
+      <div
+        className={`${classes["backdrop"]} ${
+          props.status ? classes["backdrop--enable"] : classes["backdrop--disable"]
+        }`}
+      >
+        {props.component}
+      </div>
+    </FadeInOut>
   );
 }
 
