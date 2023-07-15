@@ -23,4 +23,18 @@ function CustomizeBtn(props) {
   );
 }
 
-export { CreateAccountBtn, CustomizeBtn };
+function FormBtn(props) {
+  const { icon, title, bgColor, color } = props;
+  return (
+    <div className={classes["form-btn"]} style={{ backgroundColor: bgColor }}>
+      <div className={classes["form-btn-icon"]} style={{ color: color }}>
+        {icon}
+      </div>
+      <div className={classes["form-btn-title"]} style={{ color: color }}>
+        {title}
+      </div>
+    </div>
+  );
+}
+
+export { CreateAccountBtn, CustomizeBtn, FormBtn };

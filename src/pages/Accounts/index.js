@@ -4,6 +4,7 @@ import Filter from "../../components/Layout/DefaultLayout/Filter/index";
 import { CreateAccountBtn, CustomizeBtn } from "../../components/Layout/DefaultLayout/Button";
 import Pagination from "../../components/Layout/DefaultLayout/Pagination/Pagination";
 import { ic_lock, ic_trash, ic_unlock, ic_view, ic_edit } from "../../assets/icons";
+import CreateAccountForm from "../../components/Layout/DefaultLayout/Form/CreateAccountForm";
 
 const filters = [
   {
@@ -157,6 +158,8 @@ function Accounts() {
 
   const [checkedItems, setCheckedItems] = useState(false);
 
+  const [createAccountForm, setCreateAccountForm] = useState(false);
+
   return (
     <>
       <h1>Tài khoản</h1>
@@ -166,7 +169,13 @@ function Accounts() {
         ))}
       </div>
       <div className={classes["createAccountBtn-container"]}>
-        <CreateAccountBtn />
+        <div
+          onClick={() => {
+            setCreateAccountForm(true);
+          }}
+        >
+          <CreateAccountBtn />
+        </div>
       </div>
       <div className={classes["customize-container"]}>
         <div className={classes["customize-container-left"]}>
@@ -235,6 +244,13 @@ function Accounts() {
           pageSize={pageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />
+      </div>
+      <div
+        className={`${classes["backdrop"]} ${
+          createAccountForm ? classes["backdrop--enable"] : classes["backdrop--disable"]
+        }`}
+      >
+        <CreateAccountForm setCreateAccountForm={setCreateAccountForm} />
       </div>
     </>
   );

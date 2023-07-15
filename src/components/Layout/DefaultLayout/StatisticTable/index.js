@@ -1,5 +1,6 @@
 import classes from "./StatisticTable.module.scss";
 import StatisticsTableItem from "./StatisticTableItem";
+import DefaultLayout from "..";
 
 function numberWithCommas(x) {
   x = x.toString();

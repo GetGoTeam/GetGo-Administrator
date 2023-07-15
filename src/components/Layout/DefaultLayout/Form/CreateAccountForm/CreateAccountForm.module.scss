@@ -1,0 +1,67 @@
+@import "/src/utils/base.scss";
+
+.form-container {
+  width: 400px;
+  height: fit-content;
+  padding-bottom: 20px;
+  background-color: $primary_50;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: $primary_500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $text_300;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 15px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.body {
+  margin: 15px;
+}
+
+.close {
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 15px;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: $primary_900;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.selector {
+  //   background: $primary_50;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  width: 150px;
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  width: 145px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
