@@ -5,6 +5,7 @@ import { CreateAccountBtn, CustomizeBtn } from "../../components/Layout/DefaultL
 import Pagination from "../../components/Layout/DefaultLayout/Pagination/Pagination";
 import { ic_lock, ic_trash, ic_unlock, ic_view, ic_edit } from "../../assets/icons";
 import CreateAccountForm from "../../components/Layout/DefaultLayout/Form/CreateAccountForm";
+import BackDrop from "../../components/Layout/DefaultLayout/BackDrop";
 
 const filters = [
   {
@@ -245,13 +246,10 @@ function Accounts() {
           onPageChange={(page) => setCurrentPage(page)}
         />
       </div>
-      <div
-        className={`${classes["backdrop"]} ${
-          createAccountForm ? classes["backdrop--enable"] : classes["backdrop--disable"]
-        }`}
-      >
-        <CreateAccountForm setCreateAccountForm={setCreateAccountForm} />
-      </div>
+      <BackDrop
+        status={createAccountForm}
+        component={<CreateAccountForm setCreateAccountForm={setCreateAccountForm} />}
+      />
     </>
   );
 }
