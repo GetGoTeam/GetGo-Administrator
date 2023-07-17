@@ -1,3 +1,5 @@
+import "./Reports.module.scss";
+
 function Reports() {
   return (
     <>

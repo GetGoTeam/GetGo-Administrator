@@ -1,0 +1,84 @@
+@import "/src/utils/base.scss";
+
+:root {
+  --tab-height: 40px;
+  --tab-width: 130px;
+  --border-width: 3px;
+}
+
+.slidingTabs-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  -webkit-user-select: none;
+  user-select: none;
+
+  .tabs {
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    * {
+      z-index: 2;
+    }
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+    height: var(--tab-height);
+    width: var(--tab-width);
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 10px;
+    padding-left: var(--border-width);
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+  }
+
+  input[type="radio"] {
+    &:checked {
+      & + label {
+        color: $primary_900;
+      }
+    }
+  }
+
+  input[id="radio-1"] {
+    &:checked {
+      & ~ .glider {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  input[id="radio-2"] {
+    &:checked {
+      & ~ .glider {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  .glider {
+    position: absolute;
+    display: flex;
+    height: var(--tab-height);
+    width: var(--tab-width);
+    border: var(--border-width) solid $primary_900;
+    z-index: 1;
+    border-radius: 10px;
+    transition: 0.25s ease-out;
+  }
+
+  @media (max-width: 700px) {
+    .tabs {
+      transform: scale(0.6);
+    }
+  }
+}
