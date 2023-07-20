@@ -163,7 +163,7 @@ function Accounts() {
 
   return (
     <>
-      <h1>Tài khoản</h1>
+      <h1 style={{ marginBottom: "10px" }}>Tài khoản</h1>
       <div className={classes["filter-container"]}>
         {filters.map((item, index) => (
           <Filter key={index} title={item.title} icon={item.icon} color={item.color} quantity={item.quantity} />
