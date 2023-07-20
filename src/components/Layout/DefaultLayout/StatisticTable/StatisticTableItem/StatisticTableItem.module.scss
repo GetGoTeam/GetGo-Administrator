@@ -3,29 +3,29 @@
 .item-container {
   display: flex;
   align-items: center;
-  margin: 20px;
-  width: 300px;
-  height: 100px;
+  margin: 1.2rem;
+  width: 18rem;
+  height: 5rem;
 }
 
 .icon {
-  font-size: 35px;
+  font-size: 2.5rem;
   color: $primary_50;
   border-radius: 100%;
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
+  width: 4.25rem;
+  height: 4.25rem;
+  line-height: 4.25rem;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .title {
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.5);
 }
 
 .data {
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: bold;
 }

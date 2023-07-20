@@ -15,7 +15,7 @@ function Statistics() {
 
   return (
     <>
-      <h1>Thống kê</h1>
+      <h1 className={classes["title"]}>Thống kê</h1>
       <SlidingTabs tab1={tab1} tab2={tab2} />
     </>
   );

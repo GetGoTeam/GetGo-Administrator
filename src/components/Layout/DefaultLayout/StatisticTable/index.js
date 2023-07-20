@@ -42,7 +42,7 @@ function StatisticsTable(props) {
         <StatisticsTableItem
           title="Số đơn đã hủy"
           data={numberWithCommas(canceledTrips)}
-          icon={<i className="fa-solid fa-x"></i>}
+          icon={<i className="fa-solid fa-xmark"></i>}
           bgColor="#DF3F61"
         />
         <StatisticsTableItem
