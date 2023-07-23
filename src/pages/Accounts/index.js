@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from "react";
 import classes from "./accounts.module.scss";
-import Filter from "../../components/Layout/DefaultLayout/Filter/index";
-import { CreateAccountBtn, CustomizeBtn } from "../../components/Layout/DefaultLayout/Button";
-import Pagination from "../../components/Layout/DefaultLayout/Pagination/Pagination";
-import { ic_lock, ic_trash, ic_unlock, ic_view, ic_edit } from "../../assets/icons";
-import CreateAccountForm from "../../components/Layout/DefaultLayout/Form/CreateAccountForm";
-import BackDrop from "../../components/Layout/DefaultLayout/BackDrop";
+import Filter from "@components/Layout/DefaultLayout/Filter/index";
+import { CreateAccountBtn, CustomizeBtn } from "@components/Layout/DefaultLayout/Button";
+import Pagination from "@components/Layout/DefaultLayout/Pagination/Pagination";
+import { ic_lock, ic_trash, ic_unlock, ic_view, ic_edit } from "@assets/icons";
+import CreateAccountForm from "@components/Layout/DefaultLayout/Form/CreateAccountForm";
+import BackDrop from "@components/Layout/DefaultLayout/BackDrop";
 
 const filters = [
   {

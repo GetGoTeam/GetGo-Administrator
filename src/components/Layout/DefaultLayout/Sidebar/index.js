@@ -1,6 +1,5 @@
 import classes from "./Sidebar.module.scss";
 import SidebarItem from "./SidebarItem";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const items = [
   { title: "Thống kê", icon: <i className="fa-solid fa-chart-line"></i>, href: "/" },

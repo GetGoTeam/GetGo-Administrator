@@ -1,11 +1,8 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import classes from "./DefaultLayout.module.scss";
-import { useState } from "react";
 
 function DefaultLayout({ children, active_index }) {
-  const [backdrop, setbackdrop] = useState(false);
-
   return (
     <>
       <div className={classes["layout"]}>

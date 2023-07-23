@@ -1,7 +1,7 @@
 import "./SlidingTabs.scss";
 import { useState, useMemo } from "react";
-import colors from "../../../../utils/base.scss";
-import FadeInOut from "../BackDrop/FadeInOut";
+import colors from "@utils/base.scss";
+import FadeInOut from "@components/Layout/DefaultLayout/BackDrop/FadeInOut";
 
 function SlidingTabs(props) {
   const { tab1, tab2 } = props;

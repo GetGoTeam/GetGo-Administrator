@@ -1,5 +1,5 @@
 import classes from "./Statistics.module.scss";
-import SlidingTabs from "../../components/Layout/DefaultLayout/SlidingTabs";
+import SlidingTabs from "@components/Layout/DefaultLayout/SlidingTabs";
 import General from "./General";
 import Driver from "./Drivers";
 
