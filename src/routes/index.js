@@ -1,7 +1,7 @@
-import Accounts from "@pages/Accounts";
-import Statistics from "@pages/Statistics";
-import Trips from "@pages/Trips";
-import Reports from "@pages/Reports";
+import Accounts from "~pages/Accounts";
+import Statistics from "~pages/Statistics";
+import Trips from "~pages/Trips";
+import Reports from "~pages/Reports";
 
 const publicRoutes = [
   { path: "/", component: Statistics },

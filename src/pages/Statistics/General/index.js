@@ -1,5 +1,5 @@
 import classes from "./General.module.scss";
-import StatisticsTable from "@components/Layout/DefaultLayout/StatisticTable";
+import StatisticsTable from "~components/Layout/DefaultLayout/StatisticTable";
 import Chart from "react-apexcharts";
 
 function General() {

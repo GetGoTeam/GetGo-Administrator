@@ -1,5 +1,5 @@
 import classes from "./CreateAccountForm.module.scss";
-import { FormBtn } from "@components/Layout/DefaultLayout/Button";
+import { FormBtn } from "~components/Layout/DefaultLayout/Button";
 
 function CreateAccountForm(props) {
   return (
