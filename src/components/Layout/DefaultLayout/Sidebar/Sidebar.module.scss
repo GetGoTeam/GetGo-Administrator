@@ -2,7 +2,7 @@
 
 .sidebar {
   width: 220px;
-  min-height: 100vh;
+  height: calc(100vh - 3.5rem);
   background-color: $primary_200;
   border-right: solid 2px white;
 }

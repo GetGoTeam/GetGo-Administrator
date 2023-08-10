@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./Button.module.scss";
 
 function CreateAccountBtn() {
@@ -16,7 +17,8 @@ function CustomizeBtn(props) {
   return (
     <div className={classes["customize-btn"]}>
       <div className={classes["customize-btn-icon"]}>
-        <img src={iconBtn} alt="none" />
+        {/* <img src={iconBtn} alt="none" /> */}
+        <FontAwesomeIcon icon={iconBtn} />
       </div>
       <div className={classes["customize-btn-title"]}>{titleBtn}</div>
     </div>

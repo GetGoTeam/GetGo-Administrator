@@ -3,8 +3,8 @@
 .createAccountBtn {
   display: flex;
   background-color: $primary_900;
-  width: 200px;
-  height: 50px;
+  width: 11.5rem;
+  height: 2.5rem;
   border-radius: 80px;
   align-items: center;
   justify-content: center;
@@ -19,15 +19,16 @@
 }
 
 .createAccountBtn__icon {
-  font-size: 17px;
+  font-size: 0.9rem;
   color: white;
   margin-right: 10px;
 }
 
 .createAccountBtn__text {
-  font-size: 17px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: white;
-  font-weight: 600;
 }
 
 .customize-btn {
@@ -48,11 +49,7 @@
   &-icon {
     width: fit-content;
     margin-right: 0.5rem;
-
-    img {
-      height: 1.5rem;
-      width: auto;
-    }
+    color: white;
   }
 
   &-title {

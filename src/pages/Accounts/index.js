@@ -1,11 +1,19 @@
 import React, { useState, useMemo } from "react";
 import classes from "./accounts.module.scss";
 import Filter from "~components/Layout/DefaultLayout/Filter/index";
-import { CreateAccountBtn, CustomizeBtn } from "~components/Layout/DefaultLayout/Button";
+import {
+  CreateAccountBtn,
+  CustomizeBtn,
+} from "~components/Layout/DefaultLayout/Button";
 import Pagination from "~components/Layout/DefaultLayout/Pagination/Pagination";
-import { ic_lock, ic_trash, ic_unlock, ic_view, ic_edit } from "~assets/icons";
+import { ic_lock, ic_trash, ic_view, ic_edit } from "~assets/icons";
 import CreateAccountForm from "~components/Layout/DefaultLayout/Form/CreateAccountForm";
 import BackDrop from "~components/Layout/DefaultLayout/BackDrop";
+import {
+  faLock,
+  faLockOpen,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 
 const filters = [
   {
@@ -29,9 +37,9 @@ const filters = [
 ];
 
 const customizeOptions = [
-  { icon: ic_unlock, title: "Mở khóa" },
-  { icon: ic_lock, title: "Khóa" },
-  { icon: ic_trash, title: "Xóa" },
+  { icon: faLockOpen, title: "Mở khóa" },
+  { icon: faLock, title: "Khóa" },
+  { icon: faTrashCan, title: "Xóa" },
 ];
 
 const database = [
@@ -119,34 +127,34 @@ const database = [
     account: "Khach hang",
     status: "Binh thuong",
   },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
+  // {
+  //   name: "Tran Bao Long",
+  //   dob: "02/10/2002",
+  //   phone: "012345678901",
+  //   account: "Khach hang",
+  //   status: "Binh thuong",
+  // },
+  // {
+  //   name: "Tran Bao Long",
+  //   dob: "02/10/2002",
+  //   phone: "012345678901",
+  //   account: "Khach hang",
+  //   status: "Binh thuong",
+  // },
+  // {
+  //   name: "Tran Bao Long",
+  //   dob: "02/10/2002",
+  //   phone: "012345678901",
+  //   account: "Khach hang",
+  //   status: "Binh thuong",
+  // },
+  // {
+  //   name: "Tran Bao Long",
+  //   dob: "02/10/2002",
+  //   phone: "012345678901",
+  //   account: "Khach hang",
+  //   status: "Binh thuong",
+  // },
 ];
 function Accounts() {
   let pageSize = 10;
@@ -163,10 +171,16 @@ function Accounts() {
 
   return (
     <>
-      <h1 style={{ marginBottom: "10px" }}>Tài khoản</h1>
+      <h1 className={classes["title-account"]}>Tài khoản</h1>
       <div className={classes["filter-container"]}>
         {filters.map((item, index) => (
-          <Filter key={index} title={item.title} icon={item.icon} color={item.color} quantity={item.quantity} />
+          <Filter
+            key={index}
+            title={item.title}
+            icon={item.icon}
+            color={item.color}
+            quantity={item.quantity}
+          />
         ))}
       </div>
       <div className={classes["createAccountBtn-container"]}>
@@ -184,25 +198,53 @@ function Accounts() {
             <input type="text" name="filter" id="" placeholder="Tìm kiếm" />
           </div>
           <div className={classes["customize-container-left-select"]}>
-            <input type="checkbox" onClick={(e) => console.log(e)} />
+            <input type="checkbox" onClick={e => console.log(e)} />
             <p>Chọn tất cả</p>
           </div>
         </div>
         <div className={classes["customize-container-right"]}>
           {customizeOptions.map((item, index) => (
-            <CustomizeBtn key={index} iconBtn={item.icon} titleBtn={item.title} />
+            <CustomizeBtn
+              key={index}
+              iconBtn={item.icon}
+              titleBtn={item.title}
+            />
           ))}
         </div>
       </div>
       <div className={classes["table-container"]}>
         <div className={classes["table-container-title"]}>
           <div className={`${classes["table-container-checkbox"]}`}></div>
-          <div className={`${classes["table-container-no"]} ${classes["title"]}`}>STT</div>
-          <div className={`${classes["table-container-name"]} ${classes["title"]}`}>Họ và Tên</div>
-          <div className={`${classes["table-container-dob"]} ${classes["title"]}`}>Ngày Sinh</div>
-          <div className={`${classes["table-container-phone"]} ${classes["title"]}`}>Số Điện Thoại</div>
-          <div className={`${classes["table-container-account"]} ${classes["title"]}`}>Loại Tài Khoản</div>
-          <div className={`${classes["table-container-status"]} ${classes["title"]}`}>Trạng Thái</div>
+          <div
+            className={`${classes["table-container-no"]} ${classes["title"]}`}
+          >
+            STT
+          </div>
+          <div
+            className={`${classes["table-container-name"]} ${classes["title"]}`}
+          >
+            Họ và Tên
+          </div>
+          <div
+            className={`${classes["table-container-dob"]} ${classes["title"]}`}
+          >
+            Ngày Sinh
+          </div>
+          <div
+            className={`${classes["table-container-phone"]} ${classes["title"]}`}
+          >
+            Số Điện Thoại
+          </div>
+          <div
+            className={`${classes["table-container-account"]} ${classes["title"]}`}
+          >
+            Loại Tài Khoản
+          </div>
+          <div
+            className={`${classes["table-container-status"]} ${classes["title"]}`}
+          >
+            Trạng Thái
+          </div>
           <div className={`${classes["table-container-tools"]}`}></div>
         </div>
         <div className={classes["table-container-content"]}>
@@ -211,21 +253,45 @@ function Accounts() {
               // key={index}
               className={classes["table-container-content-item"]}
             >
-              <div className={`${classes["table-container-checkbox"]} ${classes["item"]}`}>
+              <div
+                className={`${classes["table-container-checkbox"]} ${classes["item"]}`}
+              >
                 {/* <input type="checkbox" checked={checkedItems} /> */}
                 <input type="checkbox" />
               </div>
-              <div className={`${classes["table-container-no"]} ${classes["item"]}`}>
+              <div
+                className={`${classes["table-container-no"]} ${classes["item"]}`}
+              >
                 {pageSize * (currentPage - 1) + index + 1}
               </div>
-              <div className={`${classes["table-container-name"]} ${classes["item"]}`}>{item.name}</div>
-              <div className={`${classes["table-container-dob"]} ${classes["item"]}`}>{item.dob}</div>
-              <div className={`${classes["table-container-phone"]} ${classes["item"]}`}>{item.phone}</div>
-              <div className={`${classes["table-container-account"]} ${classes["item"]}`}>{item.account}</div>
-              <div className={`${classes["table-container-status"]} ${classes["item"]} ${classes["item-status"]}`}>
+              <div
+                className={`${classes["table-container-name"]} ${classes["item"]}`}
+              >
+                {item.name}
+              </div>
+              <div
+                className={`${classes["table-container-dob"]} ${classes["item"]}`}
+              >
+                {item.dob}
+              </div>
+              <div
+                className={`${classes["table-container-phone"]} ${classes["item"]}`}
+              >
+                {item.phone}
+              </div>
+              <div
+                className={`${classes["table-container-account"]} ${classes["item"]}`}
+              >
+                {item.account}
+              </div>
+              <div
+                className={`${classes["table-container-status"]} ${classes["item"]} ${classes["item-status"]}`}
+              >
                 {item.status}
               </div>
-              <div className={`${classes["table-container-tools"]} ${classes["item"]}`}>
+              <div
+                className={`${classes["table-container-tools"]} ${classes["item"]}`}
+              >
                 <div className={classes["btn-customize"]}>
                   <img src={ic_edit} alt="none" />
                 </div>
@@ -243,12 +309,14 @@ function Accounts() {
           currentPage={currentPage}
           totalCount={database.length}
           pageSize={pageSize}
-          onPageChange={(page) => setCurrentPage(page)}
+          onPageChange={page => setCurrentPage(page)}
         />
       </div>
       <BackDrop
         status={createAccountForm}
-        component={<CreateAccountForm setCreateAccountForm={setCreateAccountForm} />}
+        component={
+          <CreateAccountForm setCreateAccountForm={setCreateAccountForm} />
+        }
       />
     </>
   );
