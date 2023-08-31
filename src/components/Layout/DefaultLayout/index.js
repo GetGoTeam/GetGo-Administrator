@@ -10,7 +10,9 @@ function DefaultLayout({ children, active_index }) {
         <Header />
         <div className={classes["container"]}>
           {/* <Login /> */}
-          <Sidebar active_index={active_index} />
+          <div className={classes["sidebar"]}>
+            <Sidebar active_index={active_index} />
+          </div>
           <div className={classes["content"]}>{children}</div>
         </div>
       </div>

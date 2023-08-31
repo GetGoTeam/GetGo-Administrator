@@ -5,6 +5,10 @@ import { styled } from "@mui/material/styles";
 import { colors } from "~utils/base";
 import { FormBtn } from "~components/Layout/DefaultLayout/Button";
 import { useState } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Swal from "sweetalert2";
+import request from "~utils/request";
 
 const CssTextField = styled(TextField, {
   shouldForwardProp: (props) => props !== "focusColor",
@@ -30,8 +34,35 @@ const CssTextField = styled(TextField, {
 }));
 
 export default function Login() {
-  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const handleConfirm = async () => {
+    setLoading(true);
+    const objLogin = {
+      email: email,
+      password: password,
+    };
+    await request
+      .post("login", objLogin)
+      .then(function (res) {
+        console.log(res.data.token);
+      })
+      .catch(function (error) {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Đăng nhập thất bại",
+          text: "Email hoặc mật khẩu không chính xác.",
+          width: "50rem",
+          confirmButtonColor: colors.primary_900,
+        });
+      })
+      .then(function () {
+        setLoading(false);
+      });
+  };
 
   return (
     <div className={classes["container"]}>
@@ -40,11 +71,11 @@ export default function Login() {
       <div className={classes["form-container"]}>
         <div className={classes["textField"]}>
           <CssTextField
-            defaultValue={username}
+            defaultValue={email}
             variant="outlined"
-            label={"Tài khoản"}
+            label={"Email"}
             fullWidth
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             focusColor={colors.primary_900}
           />
         </div>
@@ -63,8 +94,13 @@ export default function Login() {
           color="white"
           containerStyle={{ width: "100%", height: 50 }}
           textStyle={{ color: "white", fontSize: 18 }}
+          onClick={handleConfirm}
         />
       </div>
+
+      <Backdrop sx={{ color: colors.primary_900, zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }
