@@ -77,7 +77,6 @@
   box-shadow: 1px 1px 1px 1px #b4b4b4;
   border-radius: 0.3rem;
 
-
   &-title {
     height: 2.5rem;
     display: flex;
@@ -89,12 +88,11 @@
     .title {
       font-size: 1rem;
       font-weight: 600;
-      // border: 1px solid #000;
     }
   }
 
   &-content {
-    height: 13rem;
+    height: 35vh;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {

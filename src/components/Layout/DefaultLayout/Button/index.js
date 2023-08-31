@@ -39,4 +39,13 @@ function FormBtn(props) {
   );
 }
 
-export { CreateAccountBtn, CustomizeBtn, FormBtn };
+function ToolBtn(props) {
+  const { icon, disable, onClick } = props;
+  return (
+    <div className={`${classes["tool-btn"]} ${disable && classes["btn--disable"]}`} onClick={onClick}>
+      <FontAwesomeIcon icon={icon} color="white" />
+    </div>
+  );
+}
+
+export { CreateAccountBtn, CustomizeBtn, FormBtn, ToolBtn };
