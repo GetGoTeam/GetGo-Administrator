@@ -37,7 +37,13 @@ function CreateAccountForm(props) {
           <input className={classes["input"]}></input>
         </div>
         <div className={classes["btn-container"]}>
-          <FormBtn title="Thêm tài khoản" icon={<i className="fa-solid fa-plus"></i>} color="white" />
+          <FormBtn
+            title="Thêm tài khoản"
+            icon={<i className="fa-solid fa-plus"></i>}
+            color="white"
+            containerStyle={{ width: "100%", height: 50 }}
+            textStyle={{ color: "white", fontSize: 18 }}
+          />
         </div>
       </div>
     </div>

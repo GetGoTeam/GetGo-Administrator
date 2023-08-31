@@ -68,11 +68,11 @@
 .form-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: fit-content;
   width: fit-content;
   background-color: $primary_900;
-  padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: filter 0.2s;
   -webkit-user-select: none;
   user-select: none;
