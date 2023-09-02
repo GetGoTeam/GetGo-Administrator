@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import classes from "./accounts.module.scss";
 import Filter from "~components/Layout/DefaultLayout/Filter/index";
 import { CreateAccountBtn, CustomizeBtn } from "~components/Layout/DefaultLayout/Button";
@@ -7,27 +7,11 @@ import { ic_lock, ic_trash, ic_view, ic_edit } from "~assets/icons";
 import CreateAccountForm from "~components/Layout/DefaultLayout/Form/CreateAccountForm";
 import BackDrop from "~components/Layout/DefaultLayout/BackDrop";
 import { faLock, faLockOpen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-const filters = [
-  {
-    title: "Khách hàng",
-    color: "#0094e8",
-    icon: <i className="fa-regular fa-user"></i>,
-    quantity: 100,
-  },
-  {
-    title: "Tài xế",
-    color: "#00E878",
-    icon: <i className="fa-solid fa-car"></i>,
-    quantity: 100,
-  },
-  {
-    title: "Tổng đài",
-    color: "#E8A700",
-    icon: <i className="fa-solid fa-headset"></i>,
-    quantity: 100,
-  },
-];
+import Swal from "sweetalert2";
+import request from "~utils/request";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { colors } from "~utils/base";
 
 const customizeOptions = [
   { icon: faLockOpen, title: "Mở khóa" },
@@ -122,24 +106,116 @@ const database = [
   },
 ];
 function Accounts() {
+  const [checkedItems, setCheckedItems] = useState(false);
+  const [createAccountForm, setCreateAccountForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const token = JSON.stringify(localStorage.getItem("token")).split('"').join("");
+  const headers = {
+    Authorization: "Bearer " + token,
+  };
+  const [customers, setCustomers] = useState([]);
+  const [customersLength, setCustomersLength] = useState(0);
+  const [drivers, setDrivers] = useState([]);
+  const [driversLength, setDriversLength] = useState(0);
+  const [hotlines, setHotlines] = useState([]);
+  const [hotlinesLength, setHotlinesLength] = useState(0);
+  const [currentFilter, setCurrentFilter] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      // Get customers
+      await request
+        .get("get-all/customer", { headers: headers })
+        .then(function (res) {
+          const data = res.data;
+          setCustomers(data);
+          setCustomersLength(data.length);
+        })
+        .catch(function (error) {
+          console.log("Get customers error: ", error);
+        })
+        .then(function () {
+          setLoading(false);
+        });
+
+      // Get drivers
+      await request
+        .get("get-all/driver", { headers: headers })
+        .then(function (res) {
+          const data = res.data;
+          setDrivers(data);
+          setDriversLength(data.length);
+        })
+        .catch(function (error) {
+          console.log("Get drivers error: ", error);
+        })
+        .then(function () {
+          setLoading(false);
+        });
+
+      // Get hotlines
+      await request
+        .get("get-all/hotline", { headers: headers })
+        .then(function (res) {
+          const data = res.data;
+          setHotlines(data);
+          setHotlinesLength(data.length);
+        })
+        .catch(function (error) {
+          console.log("Get hotlines error: ", error);
+        })
+        .then(function () {
+          setLoading(false);
+        });
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const filters = [
+    {
+      title: "Khách hàng",
+      color: "#0094e8",
+      icon: <i className="fa-regular fa-user"></i>,
+      quantity: customersLength,
+    },
+    {
+      title: "Tài xế",
+      color: "#00E878",
+      icon: <i className="fa-solid fa-car"></i>,
+      quantity: driversLength,
+    },
+    {
+      title: "Tổng đài",
+      color: "#E8A700",
+      icon: <i className="fa-solid fa-headset"></i>,
+      quantity: hotlinesLength,
+    },
+  ];
+
   let pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return database.slice(firstPageIndex, lastPageIndex);
-  }, [pageSize, currentPage]);
-
-  const [checkedItems, setCheckedItems] = useState(false);
-
-  const [createAccountForm, setCreateAccountForm] = useState(false);
+    if (currentFilter === 0) return customers.slice(firstPageIndex, lastPageIndex);
+    else if (currentFilter === 1) return drivers.slice(firstPageIndex, lastPageIndex);
+    return hotlines.slice(firstPageIndex, lastPageIndex);
+  }, [pageSize, currentPage, customers, drivers, hotlines, currentFilter]);
 
   return (
     <>
       <h1>Tài khoản</h1>
       <div className={classes["filter-container"]}>
         {filters.map((item, index) => (
-          <Filter key={index} title={item.title} icon={item.icon} color={item.color} quantity={item.quantity} />
+          <Filter
+            key={index}
+            title={item.title}
+            icon={item.icon}
+            color={item.color}
+            quantity={item.quantity}
+            onClick={() => setCurrentFilter(index)}
+          />
         ))}
       </div>
       <div className={classes["createAccountBtn-container"]}>
@@ -188,12 +264,16 @@ function Accounts() {
               <div className={`${classes["table-container-no"]} ${classes["item"]}`}>
                 {pageSize * (currentPage - 1) + index + 1}
               </div>
-              <div className={`${classes["table-container-name"]} ${classes["item"]}`}>{item.name}</div>
+              <div className={`${classes["table-container-name"]} ${classes["item"]}`}>{item.username}</div>
               <div className={`${classes["table-container-dob"]} ${classes["item"]}`}>{item.dob}</div>
               <div className={`${classes["table-container-phone"]} ${classes["item"]}`}>{item.phone}</div>
-              <div className={`${classes["table-container-account"]} ${classes["item"]}`}>{item.account}</div>
-              <div className={`${classes["table-container-status"]} ${classes["item"]} ${classes["item-status"]}`}>
-                {item.status}
+              <div className={`${classes["table-container-account"]} ${classes["item"]}`}>{item.role}</div>
+              <div
+                className={`${classes["table-container-status"]} ${classes["item"]} ${
+                  classes[`item-status${item.blocked ? "-blocked" : ""}`]
+                }`}
+              >
+                {item.blocked ? "Bị khóa" : "Bình thường"}
               </div>
               <div className={`${classes["table-container-tools"]} ${classes["item"]}`}>
                 <div className={classes["btn-customize"]}>
@@ -211,7 +291,7 @@ function Accounts() {
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={database.length}
+          totalCount={currentFilter === 0 ? customersLength : currentFilter === 1 ? driversLength : hotlinesLength}
           pageSize={pageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />
@@ -220,6 +300,10 @@ function Accounts() {
         status={createAccountForm}
         component={<CreateAccountForm setCreateAccountForm={setCreateAccountForm} />}
       />
+
+      <Backdrop sx={{ color: colors.primary_900, zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }

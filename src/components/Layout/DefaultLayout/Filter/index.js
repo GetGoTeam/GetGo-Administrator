@@ -14,13 +14,14 @@ function hexToRgb(hex) {
 }
 
 function Filter(props) {
-  const { title, icon, quantity, color } = props;
+  const { title, icon, quantity, color, onClick } = props;
   const alpha = 0.5;
 
   return (
     <div
       className={classes["rectangle"]}
       style={{ backgroundImage: `linear-gradient(to right, rgba(${hexToRgb(color)}, ${alpha}), ${color})` }}
+      onClick={onClick}
     >
       <div className={classes["title"]}>{title}</div>
       <div className={classes["quantity-container"]}>
