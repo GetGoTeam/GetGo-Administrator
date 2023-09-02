@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { colors } from "~utils/base";
 import { FormBtn } from "~components/Layout/DefaultLayout/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Swal from "sweetalert2";
@@ -38,7 +38,7 @@ export default function Login() {
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
-  const handleConfirm = async () => {
+  const handleConfirm = async (event) => {
     setLoading(true);
     const objLogin = {
       email: email,
@@ -47,7 +47,8 @@ export default function Login() {
     await request
       .post("login", objLogin)
       .then(function (res) {
-        console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
+        window.location.reload(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -63,6 +64,17 @@ export default function Login() {
         setLoading(false);
       });
   };
+
+  const enterPress = (e) => {
+    if (e.key === "Enter") {
+      handleConfirm();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", enterPress);
+    return () => document.removeEventListener("keydown", enterPress);
+  });
 
   return (
     <div className={classes["container"]}>

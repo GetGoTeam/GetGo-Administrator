@@ -4,16 +4,23 @@ import classes from "./DefaultLayout.module.scss";
 import Login from "~pages/Login";
 
 function DefaultLayout({ children, active_index }) {
+  const token = JSON.stringify(localStorage.getItem("token")).split('"').join("");
+
   return (
     <>
       <div className={classes["layout"]}>
-        <Header />
+        {token !== "null" && <Header />}
         <div className={classes["container"]}>
-          {/* <Login /> */}
-          <div className={classes["sidebar"]}>
-            <Sidebar active_index={active_index} />
-          </div>
-          <div className={classes["content"]}>{children}</div>
+          {token !== "null" ? (
+            <>
+              <div className={classes["sidebar"]}>
+                <Sidebar active_index={active_index} />
+              </div>
+              <div className={classes["content"]}>{children}</div>
+            </>
+          ) : (
+            <Login />
+          )}
         </div>
       </div>
     </>
