@@ -49,7 +49,7 @@ function SlidingTabs(props) {
           >
             {tab2.name}
           </label>
-          <span className="glider"></span>
+          <span className="glider" />
         </div>
       </div>
       <FadeInOut show={tabStatus} duration={duration}>
