@@ -1,4 +1,4 @@
-import classes from "./Trip.module.scss";
+import classes from "./Trips.module.scss";
 import React, { useState, useMemo, useEffect } from "react";
 import Pagination from "~components/Layout/DefaultLayout/Pagination/Pagination";
 import { ToolBtn } from "~components/Layout/DefaultLayout/Button";
@@ -88,7 +88,7 @@ function Trips() {
               </div>
               <div className={`${classes["table-container-tools"]} ${classes["item"]}`}>
                 <div className={classes["tool-btn"]}>
-                  <ToolBtn icon={faStar} disable={item.status === "complete" ? false : true} />
+                  <ToolBtn icon={faStar} disable={item.status === "Complete" ? false : true} />
                 </div>
                 <div className={classes["tool-btn"]}>
                   <ToolBtn icon={faEye} />

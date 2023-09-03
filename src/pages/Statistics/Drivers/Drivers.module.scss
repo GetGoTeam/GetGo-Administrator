@@ -21,7 +21,9 @@
   }
 
   &-content {
-    height: 50vh;
+    height: max-content;
+    min-height: 30vh;
+    max-height: 60vh;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
@@ -51,45 +53,35 @@
         font-size: 1rem;
         font-weight: 400;
 
-        &-Pending {
+        &-status {
           color: #0068e1;
-        }
-        &-Picking-Up {
-          color: #c44fce;
-        }
-        &-Complete {
-          color: #2cc557;
-        }
-        &-Canceled {
-          color: #ff000f;
+
+          &-active {
+            color: #ff2020;
+          }
         }
       }
     }
   }
 
   &-no {
-    width: 6%;
+    width: 4%;
   }
 
-  &-phone {
-    width: 21%;
+  &-name {
+    width: 24%;
   }
 
-  &-time {
-    width: 21%;
+  &-complete {
+    width: 24%;
   }
 
-  &-status {
-    width: 21%;
+  &-cancel {
+    width: 24%;
   }
+
   &-revenue {
-    width: 21%;
-  }
-
-  &-tools {
-    width: 10%;
-    display: flex;
-    justify-content: center;
+    width: 24%;
   }
 }
 
@@ -97,8 +89,4 @@
   margin-top: 0.6rem;
   display: flex;
   justify-content: center;
-}
-
-.tool-btn + .tool-btn {
-  margin-left: 0.75rem;
 }

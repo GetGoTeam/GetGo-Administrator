@@ -1,4 +1,4 @@
-import classes from "./Driver.module.scss";
+import classes from "./Drivers.module.scss";
 import React, { useState, useMemo } from "react";
 import Pagination from "~components/Layout/DefaultLayout/Pagination/Pagination";
 
