@@ -3,11 +3,10 @@ import classes from "./accounts.module.scss";
 import Filter from "~components/Layout/DefaultLayout/Filter/index";
 import { CreateAccountBtn, CustomizeBtn } from "~components/Layout/DefaultLayout/Button";
 import Pagination from "~components/Layout/DefaultLayout/Pagination/Pagination";
-import { ic_lock, ic_trash, ic_view, ic_edit } from "~assets/icons";
+import { ic_view, ic_edit } from "~assets/icons";
 import CreateAccountForm from "~components/Layout/DefaultLayout/Form/CreateAccountForm";
 import BackDrop from "~components/Layout/DefaultLayout/BackDrop";
 import { faLock, faLockOpen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import Swal from "sweetalert2";
 import request from "~utils/request";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -19,92 +18,6 @@ const customizeOptions = [
   { icon: faTrashCan, title: "Xóa" },
 ];
 
-const database = [
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-  {
-    name: "Tran Bao Long",
-    dob: "02/10/2002",
-    phone: "012345678901",
-    account: "Khach hang",
-    status: "Binh thuong",
-  },
-];
 function Accounts() {
   const [checkedItems, setCheckedItems] = useState(false);
   const [createAccountForm, setCreateAccountForm] = useState(false);

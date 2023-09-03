@@ -51,13 +51,16 @@
         font-size: 1rem;
         font-weight: 400;
 
-        &-pending {
+        &-Pending {
           color: #0068e1;
         }
-        &-complete {
+        &-Picking-Up {
+          color: #c44fce;
+        }
+        &-Complete {
           color: #2cc557;
         }
-        &-cancel {
+        &-Canceled {
           color: #ff000f;
         }
       }
@@ -65,25 +68,22 @@
   }
 
   &-no {
-    width: 5%;
+    width: 6%;
   }
 
-  &-customer {
-    width: 17%;
+  &-phone {
+    width: 21%;
   }
 
-  &-driver {
-    width: 17%;
-  }
   &-time {
-    width: 17%;
+    width: 21%;
   }
 
   &-status {
-    width: 17%;
+    width: 21%;
   }
   &-revenue {
-    width: 17%;
+    width: 21%;
   }
 
   &-tools {
