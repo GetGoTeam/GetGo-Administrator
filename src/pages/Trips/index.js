@@ -18,7 +18,7 @@ function numberWithCommas(x) {
 
 function Trips() {
   const [loading, setLoading] = useState(false);
-  const token = JSON.stringify(localStorage.getItem("token")).split('"').join("");
+  const token = JSON.stringify(localStorage.getItem("tokenAdmin")).split('"').join("");
   const headers = {
     Authorization: "Bearer " + token,
   };

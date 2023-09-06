@@ -4,7 +4,7 @@ import classes from "./DefaultLayout.module.scss";
 import Login from "~pages/Login";
 
 function DefaultLayout({ children, active_index }) {
-  const token = JSON.stringify(localStorage.getItem("token")).split('"').join("");
+  const token = JSON.stringify(localStorage.getItem("tokenAdmin")).split('"').join("");
 
   return (
     <>

@@ -24,7 +24,7 @@ function Header() {
               reverseButtons: true,
             }).then((result) => {
               if (result.isConfirmed) {
-                localStorage.setItem("token", "null");
+                localStorage.setItem("tokenAdmin", "null");
                 window.location.reload(false);
               }
             });

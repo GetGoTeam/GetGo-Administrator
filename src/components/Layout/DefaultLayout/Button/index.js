@@ -13,9 +13,9 @@ function CreateAccountBtn() {
 }
 
 function CustomizeBtn(props) {
-  const { iconBtn, titleBtn } = props;
+  const { iconBtn, titleBtn, onClick } = props;
   return (
-    <div className={classes["customize-btn"]}>
+    <div className={classes["customize-btn"]} onClick={onClick}>
       <div className={classes["customize-btn-icon"]}>
         {/* <img src={iconBtn} alt="none" /> */}
         <FontAwesomeIcon icon={iconBtn} />

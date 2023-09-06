@@ -11,6 +11,7 @@ import request from "~utils/request";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { colors } from "~utils/base";
+import Swal from "sweetalert2";
 
 const customizeOptions = [
   { icon: faLockOpen, title: "Mở khóa" },
@@ -19,10 +20,10 @@ const customizeOptions = [
 ];
 
 function Accounts() {
-  const [checkedItems, setCheckedItems] = useState(false);
+  const [checkAll, setCheckAll] = useState(false);
   const [createAccountForm, setCreateAccountForm] = useState(false);
   const [loading, setLoading] = useState(false);
-  const token = JSON.stringify(localStorage.getItem("token")).split('"').join("");
+  const token = JSON.stringify(localStorage.getItem("tokenAdmin")).split('"').join("");
   const headers = {
     Authorization: "Bearer " + token,
   };
@@ -32,7 +33,18 @@ function Accounts() {
   const [driversLength, setDriversLength] = useState(0);
   const [hotlines, setHotlines] = useState([]);
   const [hotlinesLength, setHotlinesLength] = useState(0);
-  const [currentFilter, setCurrentFilter] = useState(0);
+  const [currentData, setCurrentData] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("customer");
+
+  useEffect(() => {
+    currentData.forEach((element) => {
+      if (element.isChecked === false) {
+        setCheckAll(false);
+        return;
+      }
+      setCheckAll(true);
+    });
+  }, [currentData]);
 
   useEffect(() => {
     (async () => {
@@ -44,6 +56,7 @@ function Accounts() {
           const data = res.data;
           setCustomers(data);
           setCustomersLength(data.length);
+          setCurrentData(data.map((item) => ({ ...item, isChecked: false })));
         })
         .catch(function (error) {
           console.log("Get customers error: ", error);
@@ -111,10 +124,27 @@ function Accounts() {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    if (currentFilter === 0) return customers.slice(firstPageIndex, lastPageIndex);
-    else if (currentFilter === 1) return drivers.slice(firstPageIndex, lastPageIndex);
-    return hotlines.slice(firstPageIndex, lastPageIndex);
-  }, [pageSize, currentPage, customers, drivers, hotlines, currentFilter]);
+    return currentData.slice(firstPageIndex, lastPageIndex);
+  }, [pageSize, currentPage, currentData]);
+
+  async function updateAccountStatus(status) {
+    try {
+      setLoading(true);
+      currentData.forEach(async (element) => {
+        if (element.isChecked) {
+          const body = {
+            id: element._id,
+            blocked: status,
+          };
+          await request.patch(`update-status/${currentFilter}`, body, { headers: headers }).catch(function (error) {
+            console.log("Update account status error: ", error);
+          });
+        }
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -127,7 +157,18 @@ function Accounts() {
             icon={item.icon}
             color={item.color}
             quantity={item.quantity}
-            onClick={() => setCurrentFilter(index)}
+            onClick={() => {
+              if (index === 0) {
+                setCurrentData(customers.map((item) => ({ ...item, isChecked: false })));
+                setCurrentFilter("customer");
+              } else if (index === 1) {
+                setCurrentData(drivers.map((item) => ({ ...item, isChecked: false })));
+                setCurrentFilter("driver");
+              } else {
+                setCurrentData(hotlines.map((item) => ({ ...item, isChecked: false })));
+                setCurrentFilter("hotline");
+              }
+            }}
           />
         ))}
       </div>
@@ -146,33 +187,82 @@ function Accounts() {
             <input type="text" name="filter" id="" placeholder="Tìm kiếm" />
           </div>
           <div className={classes["customize-container-left-select"]}>
-            <input type="checkbox" onClick={(e) => console.log(e)} />
+            <input
+              type="checkbox"
+              checked={checkAll}
+              onChange={(e) => {
+                setCheckAll(e.target.checked);
+                setCurrentData(currentData.map((item) => ({ ...item, isChecked: e.target.checked })));
+              }}
+            />
             <p>Chọn tất cả</p>
           </div>
         </div>
         <div className={classes["customize-container-right"]}>
           {customizeOptions.map((item, index) => (
-            <CustomizeBtn key={index} iconBtn={item.icon} titleBtn={item.title} />
+            <CustomizeBtn
+              key={index}
+              iconBtn={item.icon}
+              titleBtn={item.title}
+              onClick={() => {
+                if (index === 0) {
+                  Swal.fire({
+                    title: "Xác nhận mở khóa tài khoản?",
+                    showCancelButton: true,
+                    cancelButtonText: `Hủy`,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: colors.primary_900,
+                    reverseButtons: true,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      updateAccountStatus(false);
+                      window.location.reload(false);
+                    }
+                  });
+                } else if (index === 1) {
+                  Swal.fire({
+                    title: "Xác nhận khóa tài khoản?",
+                    showCancelButton: true,
+                    cancelButtonText: `Hủy`,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: colors.primary_900,
+                    reverseButtons: true,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      updateAccountStatus(true);
+                      window.location.reload(false);
+                    }
+                  });
+                }
+              }}
+            />
           ))}
         </div>
       </div>
       <div className={classes["table-container"]}>
         <div className={classes["table-container-title"]}>
-          <div className={`${classes["table-container-checkbox"]}`}></div>
+          <div className={`${classes["table-container-checkbox"]}`} />
           <div className={`${classes["table-container-no"]} ${classes["title"]}`}>STT</div>
           <div className={`${classes["table-container-name"]} ${classes["title"]}`}>Họ và Tên</div>
           <div className={`${classes["table-container-dob"]} ${classes["title"]}`}>Ngày Sinh</div>
           <div className={`${classes["table-container-phone"]} ${classes["title"]}`}>Số Điện Thoại</div>
           <div className={`${classes["table-container-account"]} ${classes["title"]}`}>Loại Tài Khoản</div>
           <div className={`${classes["table-container-status"]} ${classes["title"]}`}>Trạng Thái</div>
-          <div className={`${classes["table-container-tools"]}`}></div>
+          <div className={`${classes["table-container-tools"]}`} />
         </div>
         <div className={classes["table-container-content"]}>
           {currentTableData.map((item, index) => (
             <div key={index} className={classes["table-container-content-item"]}>
               <div className={`${classes["table-container-checkbox"]} ${classes["item"]}`}>
-                {/* <input type="checkbox" checked={checkedItems} /> */}
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={item.isChecked}
+                  onChange={(e) => {
+                    setCurrentData(
+                      currentData.map((x) => (x._id === item._id ? { ...x, isChecked: e.target.checked } : { ...x }))
+                    );
+                  }}
+                />
               </div>
               <div className={`${classes["table-container-no"]} ${classes["item"]}`}>
                 {pageSize * (currentPage - 1) + index + 1}
@@ -204,7 +294,7 @@ function Accounts() {
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={currentFilter === 0 ? customersLength : currentFilter === 1 ? driversLength : hotlinesLength}
+          totalCount={currentData.length}
           pageSize={pageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

@@ -47,7 +47,7 @@ export default function Login() {
     await request
       .post("login", objLogin)
       .then(function (res) {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("tokenAdmin", res.data.token);
         window.location.reload(false);
       })
       .catch(function (error) {
