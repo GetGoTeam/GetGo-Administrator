@@ -50,50 +50,45 @@ function Accounts() {
     (async () => {
       setLoading(true);
       // Get customers
-      await request
-        .get("get-all/customer", { headers: headers })
-        .then(function (res) {
-          const data = res.data;
-          setCustomers(data);
-          setCustomersLength(data.length);
-          setCurrentData(data.map((item) => ({ ...item, isChecked: false })));
-        })
-        .catch(function (error) {
-          console.log("Get customers error: ", error);
-        })
-        .then(function () {
-          setLoading(false);
-        });
+      try {
+        await request
+          .get("get-all/customer", { headers: headers })
+          .then(function (res) {
+            const data = res.data;
+            setCustomers(data);
+            setCustomersLength(data.length);
+            setCurrentData(data.map((item) => ({ ...item, isChecked: false })));
+          })
+          .catch(function (error) {
+            console.log("Get customers error: ", error);
+          });
 
-      // Get drivers
-      await request
-        .get("get-all/driver", { headers: headers })
-        .then(function (res) {
-          const data = res.data;
-          setDrivers(data);
-          setDriversLength(data.length);
-        })
-        .catch(function (error) {
-          console.log("Get drivers error: ", error);
-        })
-        .then(function () {
-          setLoading(false);
-        });
+        // Get drivers
+        await request
+          .get("get-all/driver", { headers: headers })
+          .then(function (res) {
+            const data = res.data;
+            setDrivers(data);
+            setDriversLength(data.length);
+          })
+          .catch(function (error) {
+            console.log("Get drivers error: ", error);
+          });
 
-      // Get hotlines
-      await request
-        .get("get-all/hotline", { headers: headers })
-        .then(function (res) {
-          const data = res.data;
-          setHotlines(data);
-          setHotlinesLength(data.length);
-        })
-        .catch(function (error) {
-          console.log("Get hotlines error: ", error);
-        })
-        .then(function () {
-          setLoading(false);
-        });
+        // Get hotlines
+        await request
+          .get("get-all/hotline", { headers: headers })
+          .then(function (res) {
+            const data = res.data;
+            setHotlines(data);
+            setHotlinesLength(data.length);
+          })
+          .catch(function (error) {
+            console.log("Get hotlines error: ", error);
+          });
+      } finally {
+        setLoading(false);
+      }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
