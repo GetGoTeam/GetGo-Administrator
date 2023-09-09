@@ -12,6 +12,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { colors } from "~utils/base";
 import Swal from "sweetalert2";
+import { debounce } from "lodash";
 
 const customizeOptions = [
   { icon: faLockOpen, title: "Mở khóa" },
@@ -35,6 +36,7 @@ function Accounts() {
   const [hotlinesLength, setHotlinesLength] = useState(0);
   const [currentData, setCurrentData] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("customer");
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     currentData.forEach((element) => {
@@ -117,10 +119,11 @@ function Accounts() {
   let pageSize = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const currentTableData = useMemo(() => {
+    const currentDataSearch = currentData.filter((data) => data.username.toLowerCase().includes(keyword.toLowerCase()));
     const firstPageIndex = (currentPage - 1) * pageSize;
     const lastPageIndex = firstPageIndex + pageSize;
-    return currentData.slice(firstPageIndex, lastPageIndex);
-  }, [pageSize, currentPage, currentData]);
+    return currentDataSearch.slice(firstPageIndex, lastPageIndex);
+  }, [pageSize, currentPage, currentData, keyword]);
 
   async function updateAccountStatus(status) {
     try {
@@ -158,6 +161,10 @@ function Accounts() {
       setLoading(false);
     }
   }
+
+  const handleSearch = debounce((input) => {
+    setKeyword(input);
+  }, 500);
 
   return (
     <>
@@ -197,7 +204,13 @@ function Accounts() {
       <div className={classes["customize-container"]}>
         <div className={classes["customize-container-left"]}>
           <div className={classes["customize-container-left-filter"]}>
-            <input type="text" name="filter" id="" placeholder="Tìm kiếm" />
+            <input
+              type="text"
+              name="filter"
+              id=""
+              placeholder="Tìm kiếm"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
           </div>
           <div className={classes["customize-container-left-select"]}>
             <input
