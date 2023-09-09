@@ -141,6 +141,24 @@ function Accounts() {
     }
   }
 
+  async function deleteAccount() {
+    try {
+      setLoading(true);
+      currentData.forEach(async (element) => {
+        if (element.isChecked) {
+          const body = {
+            id: element._id,
+          };
+          await request.delete(`delete/${currentFilter}`, { data: body, headers: headers }).catch(function (error) {
+            console.log("Delete account error: ", error);
+          });
+        }
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <h1>Tài khoản</h1>
@@ -225,6 +243,20 @@ function Accounts() {
                   }).then((result) => {
                     if (result.isConfirmed) {
                       updateAccountStatus(true);
+                      window.location.reload(false);
+                    }
+                  });
+                } else {
+                  Swal.fire({
+                    title: "Xác nhận xóa tài khoản?",
+                    showCancelButton: true,
+                    cancelButtonText: `Hủy`,
+                    confirmButtonText: "OK",
+                    confirmButtonColor: colors.primary_900,
+                    reverseButtons: true,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      deleteAccount();
                       window.location.reload(false);
                     }
                   });
