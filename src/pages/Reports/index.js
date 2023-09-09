@@ -7,81 +7,7 @@ import request from "~utils/request";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { colors } from "~utils/base";
-
-const database = [
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-  {
-    id: "123456789",
-    customer: "Nguyễn Văn A",
-    driver: "Trần Văn B",
-    reason: "Vi phạm giao thông",
-  },
-];
+import { Tooltip } from "@mui/material";
 
 function Reports() {
   const [loading, setLoading] = useState(false);
@@ -146,6 +72,17 @@ function Reports() {
     return str;
   }
 
+  function truncateString(str, maxLength) {
+    if (str.length <= maxLength) {
+      return str;
+    } else {
+      const truncatedStr = str.substring(0, maxLength);
+      const lastSpaceIndex = truncatedStr.lastIndexOf(",");
+      const truncatedWithEllipsis = truncatedStr.substring(0, lastSpaceIndex);
+      return truncatedWithEllipsis + "...";
+    }
+  }
+
   return (
     <>
       <h1>Báo cáo</h1>
@@ -180,7 +117,11 @@ function Reports() {
                     return foundDriver ? foundDriver.username : null;
                   })()}
               </div>
-              <div className={`${classes["table-container-reason"]} ${classes["item"]}`}>{arr2str(item.reasons)}</div>
+              <Tooltip title={arr2str(item.reasons)} placement="top">
+                <div className={`${classes["table-container-reason"]} ${classes["item"]}`}>
+                  {truncateString(arr2str(item.reasons), 30)}
+                </div>
+              </Tooltip>
               <div className={`${classes["table-container-tools"]} ${classes["item"]}`}>
                 <div className={classes["tool-btn"]}>
                   <ToolBtn icon={faPaperPlane} />
@@ -202,6 +143,9 @@ function Reports() {
           onPageChange={(page) => setCurrentPage(page)}
         />
       </div>
+      <Backdrop sx={{ color: colors.primary_900, zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }

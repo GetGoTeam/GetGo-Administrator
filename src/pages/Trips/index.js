@@ -88,7 +88,7 @@ function Trips() {
               </div>
               <div className={`${classes["table-container-tools"]} ${classes["item"]}`}>
                 <div className={classes["tool-btn"]}>
-                  <ToolBtn icon={faStar} disable={item.status === "Complete" ? false : true} />
+                  <ToolBtn icon={faStar} disable={item.status === "Arrived" ? false : true} />
                 </div>
                 <div className={classes["tool-btn"]}>
                   <ToolBtn icon={faEye} />
