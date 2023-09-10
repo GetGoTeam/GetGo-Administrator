@@ -9,9 +9,6 @@ import { useState, useEffect } from "react";
 import format from "date-fns/format";
 
 function General() {
-  const revenueList = [1000000, 1200000, 1400000, 1100000, 1500000, 2000000, 2100000];
-  const todayRevenue = revenueList[revenueList.length - 1] | 0;
-  const yesterdayRevenue = revenueList[revenueList.length - 2] | 0;
   const [loading, setLoading] = useState(false);
   const token = JSON.stringify(localStorage.getItem("tokenAdmin")).split('"').join("");
   const headers = {
@@ -38,7 +35,7 @@ function General() {
     let daysText = [];
     const today = new Date();
 
-    for (let i = n - 1; i >= 0; i--) {
+    for (let i = n; i >= 0; i--) {
       const prevDay = new Date(today);
       prevDay.setDate(today.getDate() - i);
       prevDay.setHours(0, 0, 0, 0);
@@ -80,33 +77,22 @@ function General() {
             console.log("Get total trips error: ", error);
           });
 
-        const body = {
-          startTime: "2023-08-18T00:00:00.000Z",
-          endTime: "2023-08-19T00:00:00.000Z",
-        };
-        await request
-          .get("calculate-trips-by-time", { data: body, headers: headers })
-          .then(function (res) {})
-          .catch(function (error) {
-            console.log("Get revenue error: ", error);
-          });
-
-        //   const tmp = [];
-        //   for (let i = 0; i < days.value.length - 1; i++) {
-        //     const body = {
-        //       startTime: days.value[i],
-        //       endTime: days.value[i + 1],
-        //     };
-        //     await request
-        //       .get("calculate-trips-by-time", body, { headers: headers })
-        //       .then(function (res) {
-        //         tmp.push(res.date);
-        //       })
-        //       .catch(function (error) {
-        //         console.log("Get revenue error: ", error);
-        //       });
-        //   }
-        //   setRevenues(tmp);
+        const tmp = [];
+        for (let i = 0; i < days.value.length - 1; i++) {
+          const body = {
+            startTime: days.value[i],
+            endTime: days.value[i + 1],
+          };
+          await request
+            .post("calculate-trips-by-time", body, { headers: headers })
+            .then(function (res) {
+              tmp.push(res.data.totalPrice);
+            })
+            .catch(function (error) {
+              console.log("Get revenue error: ", error);
+            });
+        }
+        setRevenues(tmp);
       } finally {
         setLoading(false);
       }
@@ -116,7 +102,7 @@ function General() {
 
   const state = {
     options: {
-      colors: [todayRevenue >= yesterdayRevenue ? "#05BC39" : "#FE0E0E", "#4576b5"],
+      colors: [revenues[revenues.length - 1] >= revenues[revenues.length - 2] ? "#05BC39" : "#FE0E0E", "#4576b5"],
       chart: {
         id: "basic-bar",
       },
@@ -127,7 +113,7 @@ function General() {
     series: [
       {
         name: "Doanh thu",
-        data: revenueList,
+        data: revenues,
       },
     ],
   };
@@ -137,8 +123,8 @@ function General() {
       {!loading && (
         <>
           <StatisticsTable
-            yesterdayRevenue={yesterdayRevenue}
-            todayRevenue={todayRevenue}
+            yesterdayRevenue={revenues[revenues.length - 2] | 0}
+            todayRevenue={revenues[revenues.length - 1] | 0}
             canceledTrips={cancelTrip}
             completedTrips={finishTrip}
             totalTrips={totalTrip}
