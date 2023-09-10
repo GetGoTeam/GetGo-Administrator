@@ -9,9 +9,9 @@ function numberWithCommas(x) {
 }
 
 function StatisticsTable(props) {
-  const { yesterdayRevenue, todayRevenue, canceledTrips, completedTrips } = props;
+  const { yesterdayRevenue, todayRevenue, canceledTrips, completedTrips, totalTrips } = props;
 
-  const canceledRate = ((canceledTrips * 100) / (completedTrips + canceledTrips)).toFixed(2);
+  const canceledRate = ((canceledTrips * 100) / totalTrips).toFixed(2);
   const revenueRate = (((todayRevenue - yesterdayRevenue) / Math.min(todayRevenue, yesterdayRevenue)) * 100).toFixed(2);
 
   return (
