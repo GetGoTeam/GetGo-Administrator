@@ -99,6 +99,7 @@ export default function Login() {
             fullWidth
             onChange={(event) => setPassword(event.target.value)}
             focusColor={colors.primary_900}
+            type="password"
           />
         </div>
         <FormBtn
