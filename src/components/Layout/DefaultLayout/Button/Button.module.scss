@@ -122,3 +122,30 @@
   pointer-events: none;
   cursor: none;
 }
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: $primary_900;
+  transition: filter 0.2s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.icon-btn:hover {
+  filter: brightness(85%);
+  cursor: pointer;
+}
+
+.icon-btn-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  margin: 0 0.5rem;
+  margin-bottom: 3px;
+}

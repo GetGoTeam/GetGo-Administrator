@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "./Button.module.scss";
+import { colors } from "~utils/base";
 
 function CreateAccountBtn() {
   return (
@@ -50,4 +51,19 @@ function ToolBtn(props) {
   );
 }
 
-export { CreateAccountBtn, CustomizeBtn, FormBtn, ToolBtn };
+function IconBtn(props) {
+  const { iconLeft, iconRight, title, disable, width, height, onClick, bgColor } = props;
+  return (
+    <div
+      className={`${classes["icon-btn"]} ${disable && classes["btn--disable"]}`}
+      style={{ width: width, height: height, backgroundColor: bgColor ?? colors.primary_900 }}
+      onClick={onClick}
+    >
+      {iconLeft && <FontAwesomeIcon icon={iconLeft} color="white" />}
+      <div className={classes["icon-btn-title"]}>{title}</div>
+      {iconRight && <FontAwesomeIcon icon={iconRight} color="white" />}
+    </div>
+  );
+}
+
+export { CreateAccountBtn, CustomizeBtn, FormBtn, ToolBtn, IconBtn };

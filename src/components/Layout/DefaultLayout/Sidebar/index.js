@@ -6,6 +6,7 @@ const items = [
   { title: "Tài khoản", icon: <i className="fa-solid fa-user"></i>, href: "/accounts" },
   { title: "Đơn hàng", icon: <i className="fa-solid fa-car-side"></i>, href: "/trips" },
   { title: "Báo cáo", icon: <i className="fa-solid fa-flag"></i>, href: "/reports" },
+  { title: "Cài đặt", icon: <i className="fa-solid fa-gear"></i>, href: "/option" },
 ];
 
 function Sidebar(props) {

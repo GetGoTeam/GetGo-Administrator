@@ -1,0 +1,30 @@
+.title {
+  margin-bottom: 1rem;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textFieldContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.textField {
+  width: 30%;
+  margin: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+}
+
+.btn + .btn {
+  margin-left: 1rem;
+}
