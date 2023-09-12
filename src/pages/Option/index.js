@@ -180,9 +180,6 @@ function Option() {
       })
       .catch(function (error) {
         console.log("Patch redis error: ", error);
-      })
-      .finally(function () {
-        setLoading(false);
         Swal.fire({
           icon: "error",
           title: "Lỗi",
@@ -190,6 +187,9 @@ function Option() {
           width: "50rem",
           confirmButtonColor: colors.primary_900,
         });
+      })
+      .finally(function () {
+        setLoading(false);
       });
   };
 
