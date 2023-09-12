@@ -1,6 +1,5 @@
 import classes from "./Option.module.scss";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
