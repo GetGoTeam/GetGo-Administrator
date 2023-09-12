@@ -178,6 +178,7 @@ function Accounts() {
             color={item.color}
             quantity={item.quantity}
             onClick={() => {
+              setCurrentPage(1);
               if (index === 0) {
                 setCurrentData(customers.map((item) => ({ ...item, isChecked: false })));
                 setCurrentFilter("customer");
